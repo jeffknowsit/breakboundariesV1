@@ -1,0 +1,227 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 217 92% 54%; /* Flipkart Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 100% 54%; /* Flipkart Orange */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 341 100% 61%; /* Red instead of Yellow */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+
+    --radius: 0.5rem; /* Flipkart uses more square-ish corners */
+
+    --sidebar-background: 217 92% 54%; /* Flipkart Blue */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 217 92% 54%; /* Flipkart Blue */
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 217 92% 54%; /* Flipkart Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 100% 54%; /* Flipkart Orange */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 80%;
+
+    --accent: 341 100% 61%; /* Red instead of Yellow */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 217 92% 54%; /* Flipkart Blue */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 217 92% 54%; /* Flipkart Blue */
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-flipkart-blue/40 backdrop-blur-subtle border border-white/10 shadow-dark-glow;
+  }
+  
+  .glass-card {
+    @apply glass-panel shadow-dark-card rounded-lg;
+  }
+  
+  .feature-card {
+    @apply relative overflow-hidden bg-flipkart-blue/50 backdrop-blur-sm shadow-dark-card rounded-lg p-6 transition-all duration-300 ease-apple-ease hover:shadow-dark-glow border border-flipkart-red/20;
+  }
+  
+  .feature-icon {
+    @apply flex items-center justify-center w-12 h-12 rounded-full bg-flipkart-orange/30 text-white mb-4;
+  }
+  
+  .animated-gradient-purple {
+    background: linear-gradient(120deg, #2874F0, #FFFFFF, #FB641B);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  .animated-gradient-rainbow {
+    background: linear-gradient(120deg, #2874F0, #FF3366, #FB641B, #FFFFFF);
+    background-size: 600% 600%;
+    animation: gradient-shift 20s ease infinite;
+  }
+
+  .animated-gradient-sunset {
+    background: linear-gradient(120deg, #FF3366, #FB641B, #2874F0);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .floating-animation {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms, transform 500ms;
+  }
+  
+  .page-transition-exit {
+    opacity: 1;
+  }
+  
+  .page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+
+  .subtle-rotate-animation {
+    animation: subtle-rotate 30s linear infinite;
+  }
+
+  @keyframes subtle-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .login-card {
+    @apply bg-flipkart-blue/70 backdrop-blur-md border border-white/30 rounded-lg p-8 shadow-dark-glow;
+  }
+
+  /* Theme variant cards */
+  .theme-vibrant-card {
+    @apply bg-gradient-to-br from-flipkart-blue via-black to-flipkart-red/80 backdrop-blur-md border border-white/10 rounded-lg shadow-lg;
+  }
+
+  .theme-pastel-card {
+    @apply bg-gradient-to-br from-flipkart-blue/30 via-flipkart-blue/30 to-flipkart-red/30 backdrop-blur-md border border-white/10 rounded-lg shadow-lg;
+  }
+
+  .theme-galaxy-card {
+    @apply bg-gradient-to-br from-flipkart-blue via-black to-flipkart-orange/80 backdrop-blur-md border border-white/10 rounded-lg shadow-lg;
+  }
+
+  .theme-sunset-card {
+    @apply bg-gradient-to-br from-flipkart-red via-flipkart-orange to-flipkart-blue/80 backdrop-blur-md border border-white/10 rounded-lg shadow-lg;
+  }
+
+  /* New filter text class for dark mode */
+  .filter-text {
+    @apply text-[#ea384c] dark:text-[#ea384c] font-medium;
+  }
+}
