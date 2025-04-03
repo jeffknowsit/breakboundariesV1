@@ -1,6 +1,8 @@
 # 🚀 Break Boundaries
 
-![Break Boundaries Logo](#)  
+![Break Boundaries Logo](#) 
+![image](https://github.com/user-attachments/assets/5ca44f16-d37c-4410-bfd8-48b14558df86)
+
 **Empowering differently-abled individuals through innovative technology and community support.**
 
 ---
