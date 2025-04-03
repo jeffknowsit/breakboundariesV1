@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="80" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple circle logo -->
+  <circle cx="40" cy="40" r="40" fill="white"/>
+  
+  <!-- Text "BreakBoundaries" -->
+  <text x="100" y="48" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="32"
+        font-weight="400"
+        fill="white"
+        letter-spacing="-0.01em">
+    BreakBoundaries
+  </text>
+</svg> 

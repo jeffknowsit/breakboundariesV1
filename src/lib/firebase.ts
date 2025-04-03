@@ -1,22 +1,22 @@
-
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDelZgxHY32_PJGDdrPtTGa3Xg2eXmIqq0",
-  authDomain: "breakingboundaries-ead58.firebaseapp.com",
-  projectId: "breakingboundaries-ead58",
-  storageBucket: "breakingboundaries-ead58.firebasestorage.app",
-  messagingSenderId: "425225318604",
-  appId: "1:425225318604:web:1ba92fb232637089715269",
-  measurementId: "G-EQLP6KFJSZ"
+  apiKey: "AIzaSyD2fuVpp7Tohv678HLV4HWebTOdcl1Z0Dw",
+  authDomain: "breakboundaries-f45c9.firebaseapp.com",
+  projectId: "breakboundaries-f45c9",
+  storageBucket: "breakboundaries-f45c9.firebasestorage.app",
+  messagingSenderId: "549377800971",
+  appId: "1:549377800971:web:02b7339150433f6703000e",
+  measurementId: "G-C1413T468L"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
-export { app, auth, analytics };
+export { auth, googleProvider, analytics };

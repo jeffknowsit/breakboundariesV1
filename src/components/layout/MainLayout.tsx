@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { 
@@ -218,6 +217,23 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             />
           ))}
         </nav>
+
+        {/* Logout Button at bottom */}
+        <div className="absolute bottom-0 left-0 w-full p-4 border-t border-sidebar-border">
+          <Button
+            variant="ghost"
+            className="w-full flex items-center gap-3 text-muted-foreground hover:text-break-accent group"
+            onClick={handleLogout}
+          >
+            <LogOut size={20} className="text-gray-400 group-hover:text-break-accent transition-colors duration-300" />
+            <span className={cn(
+              "transition-opacity duration-300",
+              isMobileMenuOpen ? "opacity-100" : "opacity-0 md:opacity-100"
+            )}>
+              Logout
+            </span>
+          </Button>
+        </div>
       </motion.aside>
 
       {/* Main Content */}
