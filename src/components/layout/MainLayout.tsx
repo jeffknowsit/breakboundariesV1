@@ -15,13 +15,16 @@ import {
   Search,
   FileText,
   LogOut,
-  ArrowLeft
+  ArrowLeft,
+  Home
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { Logo } from "@/components/ui/Logo";
+import "@/styles/high-contrast.css";
 
 type NavItemProps = {
   to: string;
@@ -102,7 +105,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   };
 
   const navItems = [
-    { path: "/", icon: <Users size={20} />, label: "Community" },
+    { path: "/dashboard", icon: <Home size={20} />, label: "Dashboard" },
+    { path: "/community", icon: <Users size={20} />, label: "Community" },
     { path: "/sign-translator", icon: <HandHelping size={20} />, label: "Sign Translator" },
     { path: "/therapists", icon: <User size={20} />, label: "Therapists" },
     { path: "/progress", icon: <ChartBar size={20} />, label: "Progress" },
@@ -130,11 +134,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
               <ArrowLeft size={20} />
             </Button>
           )}
-          <img 
-            src="/lovable-uploads/4b2f004d-90b0-4a24-936a-cb86ea6675c5.png" 
-            alt="Break Boundaries Logo" 
-            className="h-8"
-          />
+          <Logo height={32} />
           <span className="font-medium text-lg text-foreground">Break Boundaries</span>
         </div>
         <div className="flex items-center gap-2">
@@ -159,11 +159,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         initial={false}
       >
         <div className="hidden md:flex items-center gap-3 mb-4 px-4">
-          <img 
-            src="/lovable-uploads/4b2f004d-90b0-4a24-936a-cb86ea6675c5.png" 
-            alt="Break Boundaries Logo" 
-            className="h-9"
-          />
+          <Logo height={36} />
           <span className="font-medium text-xl text-sidebar-foreground">Break Boundaries</span>
         </div>
 
@@ -184,8 +180,16 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
         {user && (
           <div className="flex flex-col items-center p-4 border-b border-sidebar-border mb-4">
-            <div className="h-12 w-12 rounded-full bg-break-accent/20 flex items-center justify-center text-break-accent mb-2">
-              <User size={24} />
+            <div className="h-12 w-12 rounded-full bg-break-accent/20 flex items-center justify-center text-break-accent mb-2 overflow-hidden">
+              {user.photoURL ? (
+                <img 
+                  src={user.photoURL} 
+                  alt={user.name || "User"}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <User size={24} />
+              )}
             </div>
             <p className="text-sidebar-foreground font-medium">{user.name || user.email}</p>
             <Button 
@@ -217,23 +221,6 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             />
           ))}
         </nav>
-
-        {/* Logout Button at bottom */}
-        <div className="absolute bottom-0 left-0 w-full p-4 border-t border-sidebar-border">
-          <Button
-            variant="ghost"
-            className="w-full flex items-center gap-3 text-muted-foreground hover:text-break-accent group"
-            onClick={handleLogout}
-          >
-            <LogOut size={20} className="text-gray-400 group-hover:text-break-accent transition-colors duration-300" />
-            <span className={cn(
-              "transition-opacity duration-300",
-              isMobileMenuOpen ? "opacity-100" : "opacity-0 md:opacity-100"
-            )}>
-              Logout
-            </span>
-          </Button>
-        </div>
       </motion.aside>
 
       {/* Main Content */}

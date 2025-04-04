@@ -24,6 +24,8 @@ import Accessories from "./pages/Accessories";
 import Newsletters from "./pages/Newsletters";
 import Hospitals from "./pages/Hospitals";
 import JobOpportunities from "./pages/JobOpportunities";
+import CommunityPage from "./pages/Community";
+import Dashboard1 from './pages/Dashboard1';
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,7 @@ function App() {
                     <Route path="/dashboard" element={<Index />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="/community" element={<CommunityPage />} />
                     
                     {/* Feature routes */}
                     <Route path="/sign-translator" element={<SignTranslator />} />
@@ -59,6 +62,7 @@ function App() {
                     
                     {/* Catch all */}
                     <Route path="*" element={<NotFound />} />
+                    <Route path="/dashboard1" element={<Dashboard1 />} />
                   </Route>
                 </Routes>
               </AnimatePresence>

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import AnimatedHeader from "@/components/ui-components/AnimatedHeader";
@@ -70,7 +69,7 @@ const jobs: JobListing[] = [
     reservedForDA: true,
     featured: true,
     category: "Technology",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -97,7 +96,7 @@ const jobs: JobListing[] = [
     ],
     reservedForDA: true,
     category: "Education",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -125,7 +124,7 @@ const jobs: JobListing[] = [
     reservedForDA: true,
     featured: true,
     category: "Technology",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -152,7 +151,7 @@ const jobs: JobListing[] = [
     ],
     reservedForDA: true,
     category: "Healthcare",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -179,7 +178,7 @@ const jobs: JobListing[] = [
     ],
     reservedForDA: true,
     category: "Creative",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -207,7 +206,7 @@ const jobs: JobListing[] = [
     ],
     reservedForDA: true,
     category: "Technology",
-    logo: "/placeholder.svg"
+    logo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
   }
 ];
 
@@ -276,29 +275,29 @@ const JobOpportunities = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white p-6 rounded-xl shadow-subtle border border-gray-100"
+          className="bg-card dark:bg-card/95 p-6 rounded-xl shadow-subtle border border-border"
         >
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input 
                 type="text" 
                 placeholder="Search jobs by title, company or keywords" 
-                className="pl-10"
+                className="pl-10 bg-background dark:bg-background/50 border-border"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex gap-4">
-              <Button type="button" variant="outline" className="flex items-center gap-2">
+              <Button type="button" variant="outline" className="flex items-center gap-2 border-border hover:bg-accent">
                 <Filter size={16} />
                 <span>Filters</span>
               </Button>
-              <Button type="button" variant="outline" className="flex items-center gap-2">
+              <Button type="button" variant="outline" className="flex items-center gap-2 border-border hover:bg-accent">
                 <ArrowUpDown size={16} />
                 <span>Sort</span>
               </Button>
-              <Button type="submit" className="bg-assist-600 hover:bg-assist-700">
+              <Button type="submit" className="bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90 text-white">
                 Search
               </Button>
             </div>
@@ -340,13 +339,13 @@ const JobOpportunities = () => {
 
         {/* Category Tabs */}
         <Tabs defaultValue="All" className="mt-8">
-          <TabsList className="mb-6">
+          <TabsList className="mb-6 bg-muted/50 dark:bg-muted/20 p-1">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.name} 
                 value={category.name}
                 onClick={() => handleCategoryChange(category.name)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80"
               >
                 {category.icon}
                 <span>{category.name}</span>
@@ -369,10 +368,10 @@ const JobOpportunities = () => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-12 bg-gray-50 rounded-lg">
-                  <Briefcase className="mx-auto h-12 w-12 text-gray-400" />
-                  <h3 className="mt-4 text-lg font-medium">No jobs found</h3>
-                  <p className="text-gray-500">Try adjusting your search criteria</p>
+                <div className="text-center py-12 bg-accent/50 dark:bg-accent/20 rounded-lg">
+                  <Briefcase className="mx-auto h-12 w-12 text-muted-foreground" />
+                  <h3 className="mt-4 text-lg font-medium text-foreground">No jobs found</h3>
+                  <p className="text-muted-foreground">Try adjusting your search criteria</p>
                 </div>
               )}
             </TabsContent>
@@ -384,31 +383,31 @@ const JobOpportunities = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mt-12 bg-assist-50 p-8 rounded-xl border border-assist-100"
+          className="mt-12 bg-accent/50 dark:bg-accent/20 p-8 rounded-xl border border-border"
         >
-          <h2 className="text-2xl font-medium mb-6">Why Choose Our Job Board</h2>
+          <h2 className="text-2xl font-medium mb-6 text-foreground">Why Choose Our Job Board</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 text-assist-600 mb-4">
+            <div className="bg-card dark:bg-card/95 p-6 rounded-lg border border-border">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 dark:bg-assist-100/20 text-assist-600 dark:text-assist-400 mb-4">
                 <CheckCircle size={24} />
               </div>
-              <h3 className="text-lg font-medium mb-2">Verified Opportunities</h3>
-              <p className="text-gray-600">All listings are verified to ensure they genuinely accommodate the needs of differently-abled individuals.</p>
+              <h3 className="text-lg font-medium mb-2 text-foreground">Verified Opportunities</h3>
+              <p className="text-muted-foreground">All listings are verified to ensure they genuinely accommodate the needs of differently-abled individuals.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 text-assist-600 mb-4">
+            <div className="bg-card dark:bg-card/95 p-6 rounded-lg border border-border">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 dark:bg-assist-100/20 text-assist-600 dark:text-assist-400 mb-4">
                 <BookOpen size={24} />
               </div>
-              <h3 className="text-lg font-medium mb-2">Resume Building</h3>
-              <p className="text-gray-600">Get assistance with creating an accessible resume that highlights your skills and qualifications.</p>
+              <h3 className="text-lg font-medium mb-2 text-foreground">Resume Building</h3>
+              <p className="text-muted-foreground">Get assistance with creating an accessible resume that highlights your skills and qualifications.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 text-assist-600 mb-4">
+            <div className="bg-card dark:bg-card/95 p-6 rounded-lg border border-border">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-assist-100 dark:bg-assist-100/20 text-assist-600 dark:text-assist-400 mb-4">
                 <HeartHandshake size={24} />
               </div>
-              <h3 className="text-lg font-medium mb-2">Inclusive Employers</h3>
-              <p className="text-gray-600">Partner with companies committed to creating diverse and accessible workplaces.</p>
+              <h3 className="text-lg font-medium mb-2 text-foreground">Inclusive Employers</h3>
+              <p className="text-muted-foreground">Partner with companies committed to creating diverse and accessible workplaces.</p>
             </div>
           </div>
         </motion.div>
@@ -434,28 +433,28 @@ const JobCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
     >
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden bg-card dark:bg-card/95 border-border">
         <CardHeader className="pb-2">
           <div className="flex justify-between items-start">
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-md bg-accent/50 dark:bg-accent/20 flex items-center justify-center overflow-hidden">
                 <img src={job.logo} alt={job.company} className="w-full h-full object-contain" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{job.title}</CardTitle>
+                  <CardTitle className="text-lg text-foreground">{job.title}</CardTitle>
                   {job.featured && (
-                    <Badge className="bg-yellow-500 hover:bg-yellow-600">
+                    <Badge className="bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-500/90 dark:hover:bg-yellow-600/90">
                       Featured
                     </Badge>
                   )}
                   {job.reservedForDA && (
-                    <Badge className="bg-assist-600 hover:bg-assist-700">
+                    <Badge className="bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90">
                       Reserved Position
                     </Badge>
                   )}
                 </div>
-                <CardDescription className="text-base font-medium mt-1">
+                <CardDescription className="text-base font-medium mt-1 text-muted-foreground">
                   {job.company}
                 </CardDescription>
               </div>
@@ -463,7 +462,7 @@ const JobCard = ({
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-gray-400 hover:text-assist-600"
+              className="text-muted-foreground hover:text-assist-600 dark:hover:text-assist-400"
               onClick={onSave}
             >
               <Bookmark size={18} />
@@ -473,27 +472,27 @@ const JobCard = ({
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 text-sm mb-4">
             <div className="flex items-center gap-2">
-              <MapPin size={16} className="text-assist-600" />
-              <span>{job.location}</span>
-              <Badge variant="outline" className="ml-1 bg-gray-50">
+              <MapPin size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground">{job.location}</span>
+              <Badge variant="outline" className="ml-1 bg-accent/50 dark:bg-accent/20 text-foreground dark:text-foreground/80 border-border">
                 {job.locationType}
               </Badge>
             </div>
             <div className="flex items-center gap-2">
-              <Clock size={16} className="text-assist-600" />
-              <span>{job.jobType}</span>
+              <Clock size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground">{job.jobType}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Briefcase size={16} className="text-assist-600" />
-              <span>{job.salary}</span>
+              <Briefcase size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground">{job.salary}</span>
             </div>
           </div>
           
-          <p className="text-gray-600 mb-4">{job.description}</p>
+          <p className="text-muted-foreground mb-4">{job.description}</p>
           
           <div className="mb-4">
-            <h4 className="text-sm font-medium mb-2">Requirements:</h4>
-            <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            <h4 className="text-sm font-medium mb-2 text-foreground">Requirements:</h4>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
               {job.requirements.slice(0, 3).map((req, idx) => (
                 <li key={idx}>{req}</li>
               ))}
@@ -502,31 +501,31 @@ const JobCard = ({
           </div>
           
           <div>
-            <h4 className="text-sm font-medium mb-2">Accommodations Provided:</h4>
+            <h4 className="text-sm font-medium mb-2 text-foreground">Accommodations Provided:</h4>
             <div className="flex flex-wrap gap-2">
               {job.accommodations.map((acc, idx) => (
-                <span key={idx} className="text-xs px-2 py-1 bg-assist-50 text-assist-700 rounded-full">
+                <span key={idx} className="text-xs px-2 py-1 bg-accent/50 dark:bg-accent/20 text-foreground dark:text-foreground/80 rounded-full">
                   {acc}
                 </span>
               ))}
             </div>
           </div>
           
-          <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
+          <div className="flex items-center justify-between mt-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
-              <Calendar size={14} />
+              <Calendar size={14} className="text-assist-600 dark:text-assist-400" />
               <span>Posted: {job.postedDate}</span>
             </div>
             <div className="flex items-center gap-1">
-              <Clock size={14} />
+              <Clock size={14} className="text-assist-600 dark:text-assist-400" />
               <span>Closes: {job.closingDate}</span>
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between border-t pt-4">
-          <Button variant="outline">View Details</Button>
+        <CardFooter className="flex justify-between border-t border-border pt-4">
+          <Button variant="outline" className="border-border hover:bg-accent">View Details</Button>
           <Button 
-            className="bg-assist-600 hover:bg-assist-700"
+            className="bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90 text-white"
             onClick={onApply}
           >
             Apply Now
@@ -549,13 +548,13 @@ const StatCard = ({
   icon: React.ReactNode 
 }) => {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-subtle border border-gray-100">
-      <div className="text-assist-600 mb-4">
+    <div className="bg-card dark:bg-card/95 p-6 rounded-xl shadow-subtle border border-border">
+      <div className="text-assist-600 dark:text-assist-400 mb-4">
         {icon}
       </div>
-      <h3 className="text-lg font-medium mb-1">{title}</h3>
-      <div className="text-3xl font-bold text-assist-700 mb-2">{value}</div>
-      <p className="text-sm text-gray-600">{description}</p>
+      <h3 className="text-lg font-medium mb-1 text-foreground">{title}</h3>
+      <div className="text-3xl font-bold text-assist-600 dark:text-assist-400 mb-2">{value}</div>
+      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 };

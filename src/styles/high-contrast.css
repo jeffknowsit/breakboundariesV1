@@ -1,0 +1,58 @@
+/* High Contrast Mode Styles */
+:root.high-contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #ffff00;
+  --secondary: #00ffff;
+  --accent: #ff00ff;
+  --border: #ffffff;
+}
+
+.high-contrast {
+  /* Text contrast */
+  --text-primary: var(--foreground);
+  --text-secondary: var(--secondary);
+  
+  /* Button styles */
+  .button {
+    border: 2px solid var(--border);
+    color: var(--foreground);
+    background: var(--background);
+  }
+  
+  /* Input fields */
+  input, textarea, select {
+    border: 2px solid var(--border);
+    background: var(--background);
+    color: var(--foreground);
+  }
+  
+  /* Links */
+  a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  
+  /* Focus states */
+  *:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  
+  /* Cards and containers */
+  .card {
+    border: 2px solid var(--border);
+    background: var(--background);
+  }
+  
+  /* Switch component */
+  .switch[data-state="checked"] {
+    background-color: var(--primary);
+  }
+  
+  /* Icons */
+  svg {
+    stroke: var(--foreground);
+    fill: none;
+  }
+} 

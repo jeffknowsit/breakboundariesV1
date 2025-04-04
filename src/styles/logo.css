@@ -1,0 +1,13 @@
+/* Logo dark mode transitions */
+@media (prefers-color-scheme: dark) {
+  .logo-transition {
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+/* Force hardware acceleration for smoother transitions */
+.logo-wrapper {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+} 

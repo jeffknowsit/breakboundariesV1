@@ -110,13 +110,13 @@ const features = [
     icon: <Handshake className="w-6 h-6" />,
     title: "Sign Translator",
     description: "Real-time sign language translation using advanced AI technology to facilitate better communication.",
-    link: "/translator"
+    link: "/sign-translator"
   },
   {
     icon: <Stethoscope className="w-6 h-6" />,
     title: "Therapist Support",
     description: "Connect with professional therapists specialized in various areas of assistance and guidance.",
-    link: "/therapist"
+    link: "/therapists"
   },
   {
     icon: <LineChart className="w-6 h-6" />,

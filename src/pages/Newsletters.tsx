@@ -1,383 +1,178 @@
-
-import React, { useState } from "react";
+import React from "react";
 import MainLayout from "@/components/layout/MainLayout";
-import AnimatedHeader from "@/components/ui-components/AnimatedHeader";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Mail, Calendar, Award, TrendingUp, BookOpen, User, ChevronRight } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Star, Mail, Share2 } from "lucide-react";
 
-interface SuccessStory {
-  id: number;
-  title: string;
-  category: string;
-  excerpt: string;
-  author: {
-    name: string;
-    role: string;
-    avatar: string;
-  };
-  date: string;
-  readTime: string;
-  featured?: boolean;
-}
-
-const stories: SuccessStory[] = [
+// Sample success stories data
+const successStories = [
   {
     id: 1,
-    title: "Breaking Barriers in Technology: My Journey as a Blind Software Developer",
+    title: "How I navigated the tech industry and became a senior software developer at a Fortune 500 company, developing accessibility tools that are now industry standards.",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop",
     category: "Career",
-    excerpt: "How I navigated the tech industry and became a senior software developer at a Fortune 500 company, developing accessibility tools that are now industry standards.",
     author: {
-      name: "Michael Chen",
+      name: "Alex Chen",
       role: "Senior Software Developer",
-      avatar: "/placeholder.svg"
+      avatar: "https://randomuser.me/api/portraits/women/1.jpg"
     },
-    date: "June 12, 2023",
-    readTime: "8 min read",
     featured: true
   },
   {
     id: 2,
-    title: "From Paralympic Gold to Business Success: Building an Inclusive Fitness Empire",
+    title: "After winning gold in wheelchair racing, I channeled my passion into creating an inclusive fitness brand that serves people of all abilities.",
+    image: "https://images.unsplash.com/photo-1530213786676-41ad9f7736f6?q=80&w=1000&auto=format&fit=crop",
     category: "Entrepreneurship",
-    excerpt: "After winning gold in wheelchair racing, I channeled my passion into creating an inclusive fitness brand that serves people of all abilities.",
     author: {
       name: "Sarah Johnson",
       role: "Paralympian & Entrepreneur",
-      avatar: "/placeholder.svg"
+      avatar: "https://randomuser.me/api/portraits/women/2.jpg"
     },
-    date: "May 28, 2023",
-    readTime: "12 min read",
     featured: true
   },
   {
     id: 3,
-    title: "Finding My Voice: How Text-to-Speech Technology Changed My Academic Career",
+    title: "Breaking barriers in education: My journey from special education to becoming a university professor.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop",
     category: "Education",
-    excerpt: "Living with a speech impairment, I discovered how assistive technologies could help me excel in my studies and eventually become a university professor.",
     author: {
-      name: "David Martinez",
-      role: "Professor of Literature",
-      avatar: "/placeholder.svg"
+      name: "Dr. Michael Brown",
+      role: "Professor of Education",
+      avatar: "https://randomuser.me/api/portraits/men/3.jpg"
     },
-    date: "June 5, 2023",
-    readTime: "10 min read"
-  },
-  {
-    id: 4,
-    title: "Dancing Beyond Limitations: Creating an Inclusive Dance Company",
-    category: "Arts",
-    excerpt: "How I transformed my passion for dance into a professional company that features dancers with and without disabilities, changing perceptions one performance at a time.",
-    author: {
-      name: "Amelia Wong",
-      role: "Choreographer & Artistic Director",
-      avatar: "/placeholder.svg"
-    },
-    date: "May 19, 2023",
-    readTime: "7 min read"
-  },
-  {
-    id: 5,
-    title: "The Climb to the Top: Conquering Mountains with Prosthetic Limbs",
-    category: "Sports",
-    excerpt: "After losing both legs in an accident, I set out to climb the highest peaks on each continent, proving that adventure knows no boundaries.",
-    author: {
-      name: "James Peterson",
-      role: "Mountaineer & Motivational Speaker",
-      avatar: "/placeholder.svg"
-    },
-    date: "June 8, 2023",
-    readTime: "15 min read"
-  },
-  {
-    id: 6,
-    title: "Redefining Beauty Standards: My Journey as a Model with Down Syndrome",
-    category: "Fashion",
-    excerpt: "How I challenged industry norms and became one of the first professional models with Down Syndrome to walk international runways.",
-    author: {
-      name: "Olivia Garcia",
-      role: "Professional Model & Advocate",
-      avatar: "/placeholder.svg"
-    },
-    date: "May 22, 2023",
-    readTime: "9 min read"
+    featured: false
   }
 ];
 
-const Newsletters = () => {
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
-
-  const handleSubscribe = () => {
-    if (!email || !email.includes('@')) {
-      toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address to subscribe.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    toast({
-      title: "Subscription Successful",
-      description: "Thank you for subscribing to our newsletter!",
-      duration: 5000,
-    });
-  };
-
+const SuccessStoryCard = ({ story }: { story: typeof successStories[0] }) => {
   return (
-    <MainLayout>
-      <div className="space-y-8">
-        <AnimatedHeader 
-          title="Success Newsletters"
-          subtitle="Discover inspiring stories of achievements and breakthroughs by differently-abled individuals from around the world. Our curated newsletters highlight personal journeys, career milestones, and innovative contributions that are reshaping society."
-        />
-
-        {/* Newsletter Subscription */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-assist-50 p-6 rounded-xl border border-assist-100"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="bg-assist-100 p-3 rounded-full text-assist-600">
-                <Mail size={24} />
-              </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Card className="group overflow-hidden h-full bg-[#0A0118] hover:shadow-lg transition-all duration-300 border-0 cursor-pointer">
+        <div className="relative">
+          {/* Image with gradient overlay */}
+          <div className="aspect-[4/3] relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0118]/70 to-[#0A0118] z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0118] via-transparent to-transparent opacity-60 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0118]/50 via-transparent to-transparent z-10" />
+            <img
+              src={story.image}
+              alt={story.title}
+              className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          {story.featured && (
+            <Badge className="absolute top-4 right-4 bg-blue-500/90 backdrop-blur-sm z-20">
+              Featured
+            </Badge>
+          )}
+        </div>
+        <CardContent className="p-6 relative z-20 -mt-20">
+          <div className="space-y-4">
+            <Badge variant="outline" className="mb-2 bg-transparent border-gray-700 text-gray-300">
+              {story.category}
+            </Badge>
+            <h3 className="text-xl font-semibold leading-tight line-clamp-2 text-white">
+              {story.title}
+            </h3>
+            <div className="flex items-center space-x-4">
+              <Avatar>
+                <AvatarImage src={story.author.avatar} />
+                <AvatarFallback>{story.author.name[0]}</AvatarFallback>
+              </Avatar>
               <div>
-                <h3 className="text-lg font-medium">Subscribe to Our Newsletter</h3>
-                <p className="text-gray-600">Get inspiring stories and community updates delivered to your inbox monthly</p>
+                <p className="font-medium text-white">{story.author.name}</p>
+                <p className="text-sm text-gray-400">{story.author.role}</p>
               </div>
             </div>
-            <div className="flex w-full md:w-auto max-w-md">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 border border-gray-300 rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-assist-500"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <div className="flex items-center justify-between pt-4">
               <Button 
-                className="rounded-l-none bg-assist-600 hover:bg-assist-700"
-                onClick={handleSubscribe}
+                variant="ghost" 
+                className="text-blue-400 hover:text-blue-300 hover:bg-blue-900/20 pl-0"
               >
-                Subscribe
+                Read full story <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-gray-400 hover:text-gray-300 hover:bg-gray-800"
+              >
+                <Share2 className="h-4 w-4" />
               </Button>
             </div>
           </div>
-        </motion.div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
 
-        {/* Featured Stories */}
-        <div>
-          <h2 className="text-2xl font-medium mb-6">Featured Success Stories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {stories.filter(story => story.featured).map((story, index) => (
-              <motion.div
-                key={story.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-subtle border border-gray-100 overflow-hidden"
-              >
-                <div className="h-48 bg-gray-100 relative">
-                  <img 
-                    src="/placeholder.svg" 
-                    alt={story.title} 
-                    className="w-full h-full object-cover"
+const Newsletters = () => {
+  return (
+    <MainLayout>
+      <div className="container mx-auto px-4 py-8">
+        <div className="space-y-8">
+          {/* Header Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-12"
+          >
+            <h1 className="text-4xl font-bold mb-4">Featured Success Stories</h1>
+            <p className="text-lg text-muted-foreground mb-8">
+              Inspiring journeys of differently-abled individuals breaking barriers and achieving their dreams.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Button className="bg-blue-500 hover:bg-blue-600">
+                <Mail className="mr-2 h-4 w-4" />
+                Subscribe to Newsletter
+              </Button>
+              <Button variant="outline">
+                <Star className="mr-2 h-4 w-4" />
+                Featured Stories
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Featured Stories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {successStories.map((story) => (
+              <SuccessStoryCard key={story.id} story={story} />
+            ))}
+          </div>
+
+          {/* Newsletter Subscription Card */}
+          <Card className="mt-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10">
+            <CardContent className="p-8">
+              <div className="text-center max-w-2xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">Get Inspired Weekly</h2>
+                <p className="text-muted-foreground mb-6">
+                  Subscribe to our newsletter to receive weekly success stories and updates from our community.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <Badge className="absolute top-4 right-4 bg-assist-600">
-                    Featured
-                  </Badge>
+                  <Button className="bg-blue-500 hover:bg-blue-600">
+                    Subscribe Now
+                  </Button>
                 </div>
-                <div className="p-6">
-                  <Badge variant="outline" className="mb-2">
-                    {story.category}
-                  </Badge>
-                  <h3 className="text-xl font-medium mb-2">{story.title}</h3>
-                  <p className="text-gray-600 mb-4">{story.excerpt}</p>
-                  
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <Avatar>
-                        <AvatarImage src={story.author.avatar} alt={story.author.name} />
-                        <AvatarFallback>{story.author.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <div className="font-medium">{story.author.name}</div>
-                        <div className="text-sm text-gray-500">{story.author.role}</div>
-                      </div>
-                    </div>
-                    <Button variant="ghost" className="text-assist-600 hover:text-assist-700 gap-1">
-                      Read more
-                      <ChevronRight size={16} />
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* All Stories Tab Interface */}
-        <Tabs defaultValue="all" className="mb-12">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-medium">All Success Stories</h2>
-            <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="career">Career</TabsTrigger>
-              <TabsTrigger value="sports">Sports</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
-              <TabsTrigger value="arts">Arts</TabsTrigger>
-            </TabsList>
-          </div>
-          
-          <TabsContent value="all" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories.map((story, index) => (
-              <StoryCard key={story.id} story={story} index={index} />
-            ))}
-          </TabsContent>
-          
-          <TabsContent value="career" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories
-              .filter(story => story.category === "Career" || story.category === "Entrepreneurship")
-              .map((story, index) => (
-                <StoryCard key={story.id} story={story} index={index} />
-              ))}
-          </TabsContent>
-          
-          <TabsContent value="sports" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories
-              .filter(story => story.category === "Sports")
-              .map((story, index) => (
-                <StoryCard key={story.id} story={story} index={index} />
-              ))}
-          </TabsContent>
-          
-          <TabsContent value="education" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories
-              .filter(story => story.category === "Education")
-              .map((story, index) => (
-                <StoryCard key={story.id} story={story} index={index} />
-              ))}
-          </TabsContent>
-          
-          <TabsContent value="arts" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stories
-              .filter(story => story.category === "Arts" || story.category === "Fashion")
-              .map((story, index) => (
-                <StoryCard key={story.id} story={story} index={index} />
-              ))}
-          </TabsContent>
-        </Tabs>
-        
-        {/* Community Achievements */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Award size={24} className="text-assist-600" />
-            <h2 className="text-2xl font-medium">Community Achievements</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <AchievementCard 
-              icon={<TrendingUp size={24} />}
-              title="Employment Growth"
-              value="27%"
-              description="Increase in employment within our community over the past year"
-            />
-            <AchievementCard 
-              icon={<User size={24} />}
-              title="New Members"
-              value="1,243"
-              description="Individuals joined our community in the last quarter"
-            />
-            <AchievementCard 
-              icon={<BookOpen size={24} />}
-              title="Education Access"
-              value="32"
-              description="New scholarship programs initiated for community members"
-            />
-            <AchievementCard 
-              icon={<Award size={24} />}
-              title="Recognition"
-              value="18"
-              description="National awards won by community members this year"
-            />
-          </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </MainLayout>
   );
 };
-
-const StoryCard = ({ story, index }: { story: SuccessStory; index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.05 }}
-  >
-    <Card className="h-full flex flex-col">
-      <CardHeader className="pb-2">
-        <Badge variant="outline" className="w-fit mb-2">
-          {story.category}
-        </Badge>
-        <CardTitle className="text-lg">{story.title}</CardTitle>
-        <CardDescription className="flex items-center gap-2">
-          <Calendar size={14} />
-          <span>{story.date}</span>
-          <span>•</span>
-          <span>{story.readTime}</span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-gray-600 text-sm">{story.excerpt}</p>
-      </CardContent>
-      <CardFooter className="mt-auto pt-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={story.author.avatar} alt={story.author.name} />
-            <AvatarFallback>{story.author.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <span className="text-sm font-medium">{story.author.name}</span>
-        </div>
-        <Button variant="ghost" size="sm" className="text-assist-600 hover:text-assist-700">
-          Read more
-        </Button>
-      </CardFooter>
-    </Card>
-  </motion.div>
-);
-
-const AchievementCard = ({ 
-  icon, 
-  title, 
-  value, 
-  description 
-}: { 
-  icon: React.ReactNode; 
-  title: string; 
-  value: string; 
-  description: string 
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="bg-white p-6 rounded-xl shadow-subtle border border-gray-100"
-  >
-    <div className="text-assist-600 mb-4">
-      {icon}
-    </div>
-    <h3 className="text-lg font-medium mb-1">{title}</h3>
-    <div className="text-3xl font-bold text-assist-700 mb-2">{value}</div>
-    <p className="text-sm text-gray-600">{description}</p>
-  </motion.div>
-);
 
 export default Newsletters;

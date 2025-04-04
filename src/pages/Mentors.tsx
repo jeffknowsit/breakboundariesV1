@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import AnimatedHeader from "@/components/ui-components/AnimatedHeader";
@@ -101,18 +100,18 @@ const MentorCard = ({ name, avatar, profession, expertise, experience, education
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
     >
-      <Card>
+      <Card className="bg-card dark:bg-card/95 border-border">
         <CardHeader className="pb-2">
           <div className="flex justify-between">
             <div className="flex items-center gap-4">
-              <Avatar className="w-16 h-16">
+              <Avatar className="w-16 h-16 border border-border">
                 <AvatarImage src={avatar} alt={name} />
                 <AvatarFallback>{name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
-                <CardTitle className="text-lg">{name}</CardTitle>
-                <CardDescription className="flex items-center gap-1">
-                  <Briefcase size={14} />
+                <CardTitle className="text-lg text-foreground">{name}</CardTitle>
+                <CardDescription className="flex items-center gap-1 text-muted-foreground">
+                  <Briefcase size={14} className="text-assist-600 dark:text-assist-400" />
                   <span>{profession}</span>
                 </CardDescription>
               </div>
@@ -123,40 +122,40 @@ const MentorCard = ({ name, avatar, profession, expertise, experience, education
           <div className="space-y-3">
             <div className="flex flex-wrap gap-2">
               {expertise.map((skill, idx) => (
-                <Badge key={idx} variant="outline" className="bg-gray-50">
+                <Badge key={idx} variant="outline" className="bg-accent/50 dark:bg-accent/20 text-foreground dark:text-foreground/80 border-border">
                   {skill}
                 </Badge>
               ))}
             </div>
             
-            <div className="grid grid-cols-2 gap-y-2 text-sm">
+            <div className="grid grid-cols-2 gap-y-2 text-sm text-muted-foreground">
               <div className="flex items-center">
-                <Briefcase size={16} className="mr-2 text-assist-600" />
+                <Briefcase size={16} className="mr-2 text-assist-600 dark:text-assist-400" />
                 <span>{experience}</span>
               </div>
               <div className="flex items-center">
-                <GraduationCap size={16} className="mr-2 text-assist-600" />
+                <GraduationCap size={16} className="mr-2 text-assist-600 dark:text-assist-400" />
                 <span>{education}</span>
               </div>
               <div className="flex items-center">
-                <Star size={16} className="mr-2 text-yellow-500" />
+                <Star size={16} className="mr-2 text-yellow-500 dark:text-yellow-400" />
                 <span>{rating} Rating</span>
               </div>
               <div className="flex items-center">
-                <MessageCircle size={16} className="mr-2 text-assist-600" />
+                <MessageCircle size={16} className="mr-2 text-assist-600 dark:text-assist-400" />
                 <span>{sessions} Sessions</span>
               </div>
             </div>
             
-            <div className="flex items-center text-sm text-gray-600">
-              <MapPin size={16} className="mr-2" />
+            <div className="flex items-center text-sm text-muted-foreground">
+              <MapPin size={16} className="mr-2 text-assist-600 dark:text-assist-400" />
               <span>{location}</span>
             </div>
           </div>
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-2">
-          <Button className="w-full sm:w-auto bg-assist-600 hover:bg-assist-700">Book a Session</Button>
-          <Button variant="outline" className="w-full sm:w-auto">View Profile</Button>
+          <Button className="w-full sm:w-auto bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90 text-white">Book a Session</Button>
+          <Button variant="outline" className="w-full sm:w-auto border-border hover:bg-accent">View Profile</Button>
         </CardFooter>
       </Card>
     </motion.div>
@@ -175,19 +174,19 @@ const Mentors = () => {
           className="max-w-3xl"
         />
 
-        <Card className="mb-6">
+        <Card className="mb-6 bg-card dark:bg-card/95 border-border">
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 text-gray-500" size={16} />
+                <Search className="absolute left-3 top-3 text-muted-foreground" size={16} />
                 <Input 
-                  className="pl-10"
+                  className="pl-10 bg-background dark:bg-background/50"
                   placeholder="Search by name, expertise, or location" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2 border-border hover:bg-accent">
                 <Filter size={16} />
                 <span>Filters</span>
               </Button>
@@ -196,17 +195,17 @@ const Mentors = () => {
         </Card>
 
         <Tabs defaultValue="all" className="w-full">
-          <TabsList className="w-full max-w-md mx-auto mb-6 bg-gray-100/80 p-1">
-            <TabsTrigger value="all" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+          <TabsList className="w-full max-w-md mx-auto mb-6 bg-muted/50 dark:bg-muted/20 p-1">
+            <TabsTrigger value="all" className="flex-1 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80 data-[state=active]:shadow-sm">
               All Mentors
             </TabsTrigger>
-            <TabsTrigger value="career" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+            <TabsTrigger value="career" className="flex-1 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80 data-[state=active]:shadow-sm">
               Career
             </TabsTrigger>
-            <TabsTrigger value="education" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+            <TabsTrigger value="education" className="flex-1 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80 data-[state=active]:shadow-sm">
               Education
             </TabsTrigger>
-            <TabsTrigger value="personal" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+            <TabsTrigger value="personal" className="flex-1 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80 data-[state=active]:shadow-sm">
               Personal
             </TabsTrigger>
           </TabsList>

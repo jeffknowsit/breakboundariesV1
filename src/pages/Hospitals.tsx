@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import AnimatedHeader from "@/components/ui-components/AnimatedHeader";
@@ -57,7 +56,7 @@ const hospitals: HospitalData[] = [
       weekends: "9:00 AM - 3:00 PM"
     },
     hasEmergency: true,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600&auto=format&fit=crop",
     featured: true
   },
   {
@@ -75,7 +74,7 @@ const hospitals: HospitalData[] = [
       weekends: "8:00 AM - 5:00 PM"
     },
     hasEmergency: true,
-    imageUrl: "/placeholder.svg",
+    imageUrl: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=600&auto=format&fit=crop",
     featured: true
   },
   {
@@ -93,7 +92,7 @@ const hospitals: HospitalData[] = [
       weekends: "9:00 AM - 2:00 PM"
     },
     hasEmergency: false,
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -110,7 +109,7 @@ const hospitals: HospitalData[] = [
       weekends: "Closed"
     },
     hasEmergency: false,
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -127,7 +126,7 @@ const hospitals: HospitalData[] = [
       weekends: "24 Hours"
     },
     hasEmergency: true,
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=600&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -144,7 +143,7 @@ const hospitals: HospitalData[] = [
       weekends: "10:00 AM - 2:00 PM"
     },
     hasEmergency: false,
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=600&auto=format&fit=crop"
   }
 ];
 
@@ -176,29 +175,29 @@ const Hospitals = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white p-6 rounded-xl shadow-subtle border border-gray-100"
+          className="bg-card dark:bg-card/95 p-6 rounded-xl shadow-subtle border border-border"
         >
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input 
                 type="text" 
                 placeholder="Search by hospital name, location, or specialty" 
-                className="pl-10"
+                className="pl-10 bg-background dark:bg-background/50 border-border"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex gap-4">
-              <Button type="button" variant="outline" className="flex items-center gap-2">
+              <Button type="button" variant="outline" className="flex items-center gap-2 border-border hover:bg-accent">
                 <Filter size={16} />
                 <span>Filters</span>
               </Button>
-              <Button type="button" variant="outline" className="flex items-center gap-2">
+              <Button type="button" variant="outline" className="flex items-center gap-2 border-border hover:bg-accent">
                 <ArrowUpDown size={16} />
                 <span>Sort</span>
               </Button>
-              <Button type="submit" className="bg-assist-600 hover:bg-assist-700">
+              <Button type="submit" className="bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90 text-white">
                 Search
               </Button>
             </div>
@@ -207,10 +206,14 @@ const Hospitals = () => {
 
         {/* Specialty Tabs */}
         <Tabs defaultValue="all" className="mt-8">
-          <TabsList className="mb-6">
-            <TabsTrigger value="all">All Hospitals</TabsTrigger>
+          <TabsList className="mb-6 bg-muted/50 dark:bg-muted/20 p-1">
+            <TabsTrigger value="all" className="data-[state=active]:bg-background dark:data-[state=active]:bg-background/80">All Hospitals</TabsTrigger>
             {specialties.map((specialty) => (
-              <TabsTrigger key={specialty.name} value={specialty.name} className="flex items-center gap-2">
+              <TabsTrigger 
+                key={specialty.name} 
+                value={specialty.name} 
+                className="flex items-center gap-2 data-[state=active]:bg-background dark:data-[state=active]:bg-background/80"
+              >
                 {specialty.icon}
                 <span>{specialty.name}</span>
               </TabsTrigger>
@@ -234,8 +237,8 @@ const Hospitals = () => {
 
         {/* Featured Facilities Section */}
         <div className="mt-12">
-          <h2 className="text-2xl font-medium mb-6 flex items-center gap-2">
-            <Stethoscope className="text-assist-600" />
+          <h2 className="text-2xl font-medium mb-6 flex items-center gap-2 text-foreground dark:text-foreground">
+            <Stethoscope className="text-assist-600 dark:text-assist-400" />
             <span>Featured Specialized Facilities</span>
           </h2>
           
@@ -285,20 +288,20 @@ const HospitalCard = ({ hospital, index }: { hospital: HospitalData; index: numb
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden bg-card dark:bg-card/95 border-border">
         <div className="relative h-48">
           <img 
             src={hospital.imageUrl} 
             alt={hospital.name} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
           {hospital.featured && (
-            <Badge className="absolute top-4 right-4 bg-assist-600">
+            <Badge className="absolute top-4 right-4 bg-assist-600 dark:bg-assist-600/90">
               Featured
             </Badge>
           )}
           {hospital.hasEmergency && (
-            <Badge className="absolute top-4 left-4 bg-red-500">
+            <Badge className="absolute top-4 left-4 bg-red-500 dark:bg-red-500/90">
               24/7 Emergency
             </Badge>
           )}
@@ -306,24 +309,24 @@ const HospitalCard = ({ hospital, index }: { hospital: HospitalData; index: numb
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-xl">{hospital.name}</CardTitle>
-              <CardDescription className="flex items-center gap-1 mt-1">
-                <MapPin size={14} className="text-gray-500" />
+              <CardTitle className="text-xl text-foreground dark:text-foreground">{hospital.name}</CardTitle>
+              <CardDescription className="flex items-center gap-1 mt-1 text-muted-foreground dark:text-muted-foreground">
+                <MapPin size={14} />
                 <span>{hospital.address}</span>
-                <span className="text-assist-600 font-medium ml-2">{hospital.distance}</span>
+                <span className="text-assist-600 dark:text-assist-400 font-medium ml-2">{hospital.distance}</span>
               </CardDescription>
             </div>
-            <div className="flex items-center text-yellow-500">
+            <div className="flex items-center text-yellow-500 dark:text-yellow-400">
               <Star size={16} fill="currentColor" />
               <span className="ml-1 font-medium">{hospital.rating}</span>
-              <span className="text-gray-500 text-xs ml-1">({hospital.reviewCount})</span>
+              <span className="text-muted-foreground dark:text-muted-foreground text-xs ml-1">({hospital.reviewCount})</span>
             </div>
           </div>
         </CardHeader>
         <CardContent className="pb-2">
           <div className="flex flex-wrap gap-2 mb-4">
             {hospital.specialties.map((specialty) => (
-              <Badge key={specialty} variant="outline" className="bg-gray-50">
+              <Badge key={specialty} variant="outline" className="bg-accent/50 dark:bg-accent/20 text-foreground dark:text-foreground/80 border-border">
                 {specialty}
               </Badge>
             ))}
@@ -331,24 +334,24 @@ const HospitalCard = ({ hospital, index }: { hospital: HospitalData; index: numb
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <Clock size={16} className="text-assist-600" />
-              <span>Weekdays: {hospital.hours.weekdays}</span>
+              <Clock size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground dark:text-muted-foreground">Weekdays: {hospital.hours.weekdays}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock size={16} className="text-assist-600" />
-              <span>Weekends: {hospital.hours.weekends}</span>
+              <Clock size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground dark:text-muted-foreground">Weekends: {hospital.hours.weekends}</span>
             </div>
             <div className="flex items-center gap-2 md:col-span-2">
-              <Phone size={16} className="text-assist-600" />
-              <span>{hospital.phone}</span>
+              <Phone size={16} className="text-assist-600 dark:text-assist-400" />
+              <span className="text-muted-foreground dark:text-muted-foreground">{hospital.phone}</span>
             </div>
           </div>
           
           <div className="mt-4">
-            <h4 className="text-sm font-medium mb-2">Specialized Facilities:</h4>
+            <h4 className="text-sm font-medium mb-2 text-foreground dark:text-foreground">Specialized Facilities:</h4>
             <div className="flex flex-wrap gap-2">
               {hospital.facilities.map((facility) => (
-                <span key={facility} className="text-xs px-2 py-1 bg-gray-100 rounded-full">
+                <span key={facility} className="text-xs px-2 py-1 bg-accent/50 dark:bg-accent/20 text-foreground dark:text-foreground/80 rounded-full">
                   {facility}
                 </span>
               ))}
@@ -356,8 +359,8 @@ const HospitalCard = ({ hospital, index }: { hospital: HospitalData; index: numb
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">View Details</Button>
-          <Button className="bg-assist-600 hover:bg-assist-700">Book Appointment</Button>
+          <Button variant="outline" className="border-border hover:bg-accent">View Details</Button>
+          <Button className="bg-assist-600 hover:bg-assist-700 dark:bg-assist-600/90 dark:hover:bg-assist-700/90 text-white">Book Appointment</Button>
         </CardFooter>
       </Card>
     </motion.div>
@@ -378,13 +381,13 @@ const FeatureCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white p-6 rounded-xl shadow-subtle border border-gray-100"
+      className="bg-card dark:bg-card/95 p-6 rounded-xl shadow-subtle border border-border"
     >
-      <div className="inline-flex items-center justify-center p-3 bg-assist-100 rounded-full text-assist-600 mb-4">
+      <div className="inline-flex items-center justify-center p-3 bg-assist-100 dark:bg-assist-100/20 rounded-full text-assist-600 dark:text-assist-400 mb-4">
         {icon}
       </div>
-      <h3 className="text-lg font-medium mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <h3 className="text-lg font-medium mb-2 text-foreground dark:text-foreground">{title}</h3>
+      <p className="text-muted-foreground dark:text-muted-foreground">{description}</p>
     </motion.div>
   );
 };

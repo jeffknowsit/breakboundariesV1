@@ -6,10 +6,13 @@ import { ArrowRight, Check, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Logo } from "@/components/ui/Logo";
 import HeroSection from "@/components/ui-components/HeroSection";
 import FeatureGrid from "@/components/ui-components/FeatureGrid";
 import CommunitySection from "@/components/ui-components/CommunitySection";
 import { useAuth } from "@/components/auth/AuthProvider";
+import CommunityPost from "@/components/ui-components/CommunityPost";
+import Avatar from '@/components/ui-components/Avatar';
 
 const HomePage = () => {
   const { theme } = useTheme();
@@ -48,11 +51,7 @@ const HomePage = () => {
       <nav className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800/80 transition-all duration-300">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <img 
-              src="/lovable-uploads/4b2f004d-90b0-4a24-936a-cb86ea6675c5.png" 
-              alt="Break Boundaries Logo" 
-              className="h-10"
-            />
+            <Logo height={40} />
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white transition-colors">Break Boundaries</h1>
           </div>
           
@@ -111,29 +110,187 @@ const HomePage = () => {
         />
 
         {/* Feature Grid Section */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 relative overflow-hidden">
+        <section className="py-12 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 relative overflow-hidden">
           {/* Background decorations */}
           <div className="absolute inset-0 bg-grid-gray-900/[0.02] dark:bg-grid-white/[0.02] -z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white dark:to-gray-950" />
           
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-                Comprehensive Support System
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Explore our range of services designed to provide comprehensive support and empower differently-abled individuals.
-              </p>
-            </div>
-            
+          <div className="container mx-auto px-4">            
             <FeatureGrid />
           </div>
         </section>
 
-        {/* Community Section with improved styling */}
-        <section className="py-20 bg-white/50 dark:bg-gray-950/50 backdrop-blur-sm transition-colors duration-300">
-          <div className="container mx-auto max-w-6xl px-4">
-            <CommunitySection />
+        {/* Community Section */}
+        <section className="py-16 bg-white/50 dark:bg-gray-950/50 backdrop-blur-sm transition-colors duration-300">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors">
+                First Impressions
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Testimonial 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "BreakBound's innovative approach revolutionized our process, driving immediate growth and outstanding results."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar1.jpg" 
+                    alt="Sarah Johnson"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">Sarah Johnson</h4>
+                    <p className="text-gray-400 text-sm">Community Member</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "Thanks to BreakBound, our social media engagement and our brand visibility improved tremendously."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar2.jpg" 
+                    alt="Michael Chen"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">Michael Chen</h4>
+                    <p className="text-gray-400 text-sm">Tech Enthusiast</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "BreakBound's AI-based content creation expertise boosted our organic outreach and organic traffic instantly."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar3.jpg" 
+                    alt="Priya Sharma"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">Priya Sharma</h4>
+                    <p className="text-gray-400 text-sm">Travel Enthusiast</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 4 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "Working with BreakBound was the best decision. Their digital marketing solutions helped our sales significantly."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar4.jpg" 
+                    alt="Emily Chen"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">Emily Chen</h4>
+                    <p className="text-gray-400 text-sm">Business Owner</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 5 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "BreakBound's innovative strategies helped us reach a wider audience and achieve our business goals quickly."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar5.jpg" 
+                    alt="David Wilson"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">David Wilson</h4>
+                    <p className="text-gray-400 text-sm">Marketing Director</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial 6 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="bg-gray-900/95 rounded-lg p-6 shadow-lg border border-gray-800"
+              >
+                <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  {"★★★★★".split("").map((star, i) => (
+                    <span key={i}>{star}</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4">
+                  "The results from BreakBound's services are impressive. Their dedication has truly impressed me."
+                </p>
+                <div className="flex items-center gap-3">
+                  <Avatar 
+                    src="/avatars/avatar6.jpg" 
+                    alt="Alex Thompson"
+                  />
+                  <div>
+                    <h4 className="text-gray-200 font-medium">Alex Thompson</h4>
+                    <p className="text-gray-400 text-sm">Startup Founder</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
