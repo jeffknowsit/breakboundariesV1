@@ -49,15 +49,9 @@ const FeatureBox = ({ icon, title, description, link, index = 0 }: FeatureBoxPro
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 dark:text-gray-300 mb-4 transition-colors duration-300">
+            <p className="text-gray-600 dark:text-gray-300 transition-colors duration-300">
               {description}
             </p>
-
-            {/* Learn More Link */}
-            <div className="flex items-center text-blue-500 dark:text-blue-400 font-medium transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-300">
-              Learn more
-              <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-            </div>
           </div>
         </div>
       </Link>

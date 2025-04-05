@@ -81,18 +81,9 @@ const FeatureCard = ({ title, description, icon, link, index, variant = 'default
             {title}
           </h3>
           
-          <p className="text-sm mb-4 text-gray-400">
+          <p className="text-sm text-gray-400">
             {description}
           </p>
-
-          <div className="flex items-center text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
-            <span className="relative">
-              Learn more
-              {/* Button glow effect */}
-              <div className="absolute inset-0 bg-blue-400/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </span>
-            <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
-          </div>
         </div>
       </Link>
     </motion.div>

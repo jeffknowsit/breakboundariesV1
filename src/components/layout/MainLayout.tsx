@@ -135,7 +135,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             </Button>
           )}
           <Logo height={32} />
-          <span className="font-medium text-lg text-foreground">Break Boundaries</span>
+          <span className="font-medium text-2xl text-foreground">Break Boundaries</span>
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -160,7 +160,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       >
         <div className="hidden md:flex items-center gap-3 mb-4 px-4">
           <Logo height={36} />
-          <span className="font-medium text-xl text-sidebar-foreground">Break Boundaries</span>
+          <span className="font-medium text-2xl text-sidebar-foreground">Break Boundaries</span>
         </div>
 
         {/* Back button in desktop view */}
@@ -226,6 +226,15 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       {/* Main Content */}
       <main className="flex-1 max-w-full min-h-screen flex flex-col">
         <div className="p-4 md:p-8 flex-1">
+          {/* Welcome message */}
+          {user && (
+            <div className="flex justify-center mb-8">
+              <h1 className="text-3xl font-medium text-foreground">
+                Welcome, <span className="text-break-accent">{user.name || user.email}</span>
+              </h1>
+            </div>
+          )}
+          
           {/* Desktop back button for main content area */}
           {currentPath !== "/" && (
             <div className="hidden md:block mb-4">

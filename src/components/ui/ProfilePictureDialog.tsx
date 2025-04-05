@@ -167,7 +167,7 @@ export function ProfileUpload({ email, currentPhotoURL, onPhotoUpdate }: Profile
   return (
     <div className="flex flex-col gap-4">
       <div className="relative">
-        <div className="h-24 w-24 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden border-2 border-blue-500 dark:border-blue-400">
+        <div className="h-32 w-32 rounded-full bg-gray-800 dark:bg-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
           {currentPhotoURL ? (
             <img 
               src={currentPhotoURL} 
@@ -175,10 +175,10 @@ export function ProfileUpload({ email, currentPhotoURL, onPhotoUpdate }: Profile
               className="h-full w-full object-cover"
             />
           ) : (
-            <Camera className="h-12 w-12 text-gray-400" />
+            <Camera className="h-16 w-16 text-gray-600" />
           )}
         </div>
-        <label className="absolute -bottom-1 -right-1 cursor-pointer">
+        <label className="absolute bottom-0 right-0 cursor-pointer">
           <input
             ref={fileInputRef}
             type="file"
@@ -190,13 +190,13 @@ export function ProfileUpload({ email, currentPhotoURL, onPhotoUpdate }: Profile
           <Button 
             size="icon" 
             variant="outline"
-            className="h-7 w-7 rounded-full bg-background border-blue-500 hover:bg-blue-500/10 hover:text-blue-500"
+            className="h-8 w-8 rounded-full bg-gray-800 border-gray-700 hover:bg-blue-500/10 hover:border-blue-500/50"
             disabled={isUploading}
           >
             {isUploading ? (
-              <Loader2 className="h-3 w-3 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Camera className="h-3 w-3" />
+              <Camera className="h-4 w-4" />
             )}
           </Button>
         </label>
